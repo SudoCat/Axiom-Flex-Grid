@@ -1,0 +1,26 @@
+// Get Fraction
+@function ag-fraction($numerator, $denominator, $reduce: ag-conf(reduce-fractions), $escape: true) {
+  @if ( $numerator == $denominator ) {
+    @return 'full';
+  }
+  $return: if( $reduce, ag-reduce($numerator, $denominator), $numerator + '/' + $denominator );
+  @return if( $escape, ag-escape-fraction($return), $return );
+}
+
+// Reduce Fraction
+@function ag-reduce($numerator, $denominator) {
+  $gcd: ag-gcd($numerator, $denominator);
+  $n: $numerator / $gcd;
+  $d: $denominator / $gcd;
+  @return $n + '/' + $d;
+}
+
+// Get Greatest Common Denominator
+@function ag-gcd($n, $d) {
+  @return if($d > 0, ag-gcd($d, $n % $d), $n);
+}
+
+// Escape fraction for selector
+@function ag-escape-fraction($fraction) {
+  @return ag-str-replace($fraction, '/', '\/');
+}

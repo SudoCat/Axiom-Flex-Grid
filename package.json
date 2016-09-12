@@ -1,0 +1,28 @@
+{
+  "name": "axiom-flex-grid",
+  "version": "1.0.0",
+  "description": "Flexbox Grid System utilising Data Attribute Selectors",
+  "main": "sass/_ag.scss",
+  "dependencies": {},
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://SudoCat@github.com/SudoCat/Axiom-Flex-Grid.git"
+  },
+  "keywords": [
+    "layout",
+    "grid",
+    "sass",
+    "responsive",
+    "attribute",
+    "data-attribute",
+    "selectors",
+    "flexbox"
+  ],
+  "author": "Robin Neal",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SudoCat/Axiom-Flex-Grid/issues"
+  },
+  "homepage": "https://github.com/SudoCat/Axiom-Flex-Grid#readme"
+}

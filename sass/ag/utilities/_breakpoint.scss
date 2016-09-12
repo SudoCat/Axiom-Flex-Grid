@@ -1,0 +1,18 @@
+@warn "To enable responsive grid sizes, please include the Breakpoints SASS plugin. https://github.com/at-import/breakpoint";
+
+@mixin ag-bp($size, $i: false) {
+  @if ( mixin-exists(breakpoint) ) {
+    @if ( ag-deep-has-key(ag-conf(), breakpoints, $size) ) {
+      @if ( $i != false ) {
+        $sizes: ag-conf(responsive, $size);
+        @if ( index($sizes, $i) == false ) {
+          @warn "#{$i} does not exist int #{$sizes} sizes";
+        }
+      }
+      $bp: ag-conf(breakpoints, $size);
+      @include breakpoint($bp) {
+        @content;
+      }
+    }
+  }
+}

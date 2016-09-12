@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	* {
+	  box-sizing: border-box;
+	}
+	body {
+	  font-family: sans-serif;
+	}
+	div {
+	  min-height: 40px;
+	  margin: 20px 0;
+	  background: rgba(blue, 0.1);
+	  background-clip: content-box;
+	}
+	header {
+	  margin: 20px;
+	  text-align: center;
+	}
+	h1,p {
+	  margin: 1em 0;
+	}
+	h1 {
+	  font-weight: 700;
+	  font-size: 20px;
+	}
+	p {
+	  margin: 15px 0;
+	}
+	</style>
+</head>
+<body>
+	<header data-grid="wrap">
+	  <div data-grid="row">
+	    <div data-cell="full">
+	      <h1>Flexbox Responsive Grid System</h1>
+	      <p>A fully fluid grid system using flexbox and data attributes to keep your classnames clean and semantic. Selectors available with either traditional grid fractions (6/12) or as reduced fractions (1/2). Clean and readable mobile classnames with @touch, @tablet and @mobile. Extend at your leisure!</p>
+	      <p>Made by Robin Neal, part of the Axiom Digital Collective.</p>
+	    </div>
+	  </div>
+	</header>
+	<div data-grid="wrap">
+	  <div data-grid="row">
+	    <div data-cell="1/12 full@touch"></div>
+	    <div data-cell="1/6 1/2@touch"></div>
+	    <div data-cell="1/4 1/2@touch"></div>
+	    <div data-cell="1/12 1/3@touch"></div>
+	    <div data-cell="1/6 1/3@touch"></div>
+	    <div data-cell="1/4 1/3@touch"></div>
+	    <div data-cell="1/3"></div>
+	    <div data-cell="1/3"></div>
+	    <div data-cell="1/3"></div>
+	    <div data-cell="5/12"></div>
+	    <div data-cell="7/12"></div>
+	    <div data-cell="1/2">
+	      <div data-grid="row">
+	        <div data-cell="1/3"></div>
+	        <div data-cell="1/3"></div>
+	        <div data-cell="1/3"></div>
+	      </div>
+	    </div>
+	    <div data-cell="1/2"></div>
+	    <div data-cell="full">
+	      <div data-grid="row justify-center">
+	        <div data-cell="1/2"></div>
+	      </div>
+	    </div>
+	    <div data-cell="1/5"></div>
+	    <div data-cell="4/5"></div>
+	    <div data-cell="2/5"></div>
+	    <div data-cell="3/5"></div>
+	    <div data-cell="full"></div>
+	  </div>
+	</div>
+</body>
+</html>
