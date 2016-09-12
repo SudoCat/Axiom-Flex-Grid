@@ -1,6 +1,9 @@
 # Axiom-Flex-Grid
 A versatile SCSS/SASS Flexbox grid system, utilising data attribute selectors for maximum versatility and readability.
 
+## Getting Started
+After including the Axiom Grid System in your project, you can include the grid markup using: `@include ag-grid`. Configure the settings using the `$ag` map. Full documentation coming soon.
+
 ## FAQ
 **Why attribute selectors?**
 Despite the bad rep unqualified attribute selectors receive, they're really powerful, and enable us to keep our markup clean and readable. No longer will your grid turn your classname into numerical-acronym soup - just inspect the source of this page and you'll see for yourself.
