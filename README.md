@@ -6,7 +6,7 @@ After including the Axiom Grid System in your project, you can include the grid 
 
 ## FAQ
 **Why attribute selectors?**  
-Despite the bad rep unqualified attribute selectors receive, they're really powerful, and enable us to keep our markup clean and readable. No longer will your grid turn your classname into numerical-acronym soup - just inspect the source of this page and you'll see for yourself.
+Despite the bad rep unqualified attribute selectors receive, they're really powerful, and enable us to keep our markup clean and readable. No longer will your grid turn your classname into numerical-acronym soup - just inspect the source of our demos and see for yourself.
 
 Attribute selectors also allow us more powerful targeting; We can apply our base styling to the attribute, and then use the attribute value for specifics. This makes it much, much easier to add new modifiers and adjust properties like padding for different breakpoints.
 
@@ -20,3 +20,6 @@ The @ syntax is based on [this excellent article from Harry Roberts csswizardry]
 
 **But doesn't using a grid create bloat, what about all those classes I don't use?**  
 If you're worried about CSS bloat, you should've already heard about [uncss](https://github.com/giakki/uncss).
+
+## Demos
+[Codepen](http://codepen.io/SudoCat/full/wzBzoG/)
