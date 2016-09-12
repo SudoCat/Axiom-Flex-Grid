@@ -1,4 +1,6 @@
-@warn "To enable responsive grid sizes, please include the Breakpoints SASS plugin. https://github.com/at-import/breakpoint";
+@if ( not mixin-exists(breakpoint) ) {
+  @warn "To enable responsive grid sizes, please include the Breakpoints SASS plugin. https://github.com/at-import/breakpoint";
+}
 
 @mixin ag-bp($size, $i: false) {
   @if ( mixin-exists(breakpoint) ) {
