@@ -21,5 +21,40 @@ The @ syntax is based on [this excellent article from Harry Roberts csswizardry]
 **But doesn't using a grid create bloat, what about all those classes I don't use?**  
 If you're worried about CSS bloat, you should've already heard about [uncss](https://github.com/giakki/uncss).
 
+**What about IE Support?**
+We have now added IE support for 10 and 11 - older versions will probably require some further work. You can toggle IE support with the ie-support setting.
+
+## Configuration
+The settings can be configured using the `$ag` map variable. The configuration format is as follows:
+
+```scss
+$ag: (
+  max-width: 1680px,
+  columns: 12,
+  gutters: 3em,
+  include-fiths: true,
+  include-alignment: true,
+  reduce-fractions: true,
+  responsive: (
+    mobile: (4, 6, 8, 12),
+    tablet: (3, 4, 6, 8, 9, 12),
+    touch: (3, 4, 6, 8, 9, 12),
+  ),
+  breakpoints: (
+    mobile: max-width 640px,
+    tablet: 640px 1280px,
+    touch: max-width 1280px,
+  ),
+  ie-support: true
+);
+```
+
 ## Demos
 [Codepen](http://codepen.io/SudoCat/full/wzBzoG/)
+
+## Todo
+- Add settings for responsive cell padding
+- Write documentation
+- Crossbrowser testing
+- Add automated testing suite
+- Provide option to use fully qualified selectors
