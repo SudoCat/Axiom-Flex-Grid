@@ -18,7 +18,8 @@ $ag-defaults: (
     mobile: max-width 640px,
     tablet: 640px 1280px,
     touch: max-width 1280px,
-  )
+  ),
+  ie-support: true
 );
 
 // User Settings
