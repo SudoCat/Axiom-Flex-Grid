@@ -3,7 +3,9 @@
   "version": "1.0.5",
   "description": "Flexbox Grid System utilising Data Attribute Selectors",
   "main": "sass/_ag.scss",
-  "dependencies": {},
+  "dependencies": {
+    "breakpoint-sass": "^2.7.0"
+  },
   "devDependencies": {},
   "repository": {
     "type": "git",

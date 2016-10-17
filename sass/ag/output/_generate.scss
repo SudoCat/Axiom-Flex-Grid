@@ -88,18 +88,26 @@
       flex-basis: $percent;
     }
 
-    @if ( ag-conf(ieSupport) == true ) {
+    @if ( ag-conf(ie-support) == true ) {
       @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
         [data-cell~="#{$fraction}"] {
           max-width: $percent;
         }
-      }      
+      }
     }
 
     @each $size in map-keys(ag-conf(breakpoints)) {
       @include ag-bp($size, $i) {
-        [data-cell*="#{$fraction}@#{$size}"] {
+        [data-cell~="#{$fraction}@#{$size}"] {
           flex-basis: $percent;
+        }
+
+        @if ( ag-conf(ie-support) == true ) {
+          @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+            [data-cell~="#{$fraction}@#{$size}"] {
+              max-width: $percent;
+            }
+          }
         }
       }
     }
