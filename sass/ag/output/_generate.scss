@@ -4,12 +4,12 @@
     display: flex;
     flex-wrap: wrap;
     flex-grow: 1;
-    margin-left: auto;
-    margin-right: auto;
   }
 
   [data-grid~=wrap] {
     max-width: ag-conf(max-width);
+    margin-left: auto;
+    margin-right: auto;
     padding-left: ag-conf(gutters);
     padding-right: ag-conf(gutters);
   }
