@@ -1,6 +1,6 @@
 {
   "name": "axiom-flex-grid",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Flexbox Grid System utilising Data Attribute Selectors",
   "main": "sass/_ag.scss",
   "dependencies": {
