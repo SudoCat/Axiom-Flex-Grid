@@ -26,6 +26,10 @@
 
 // Generate Grid Wrapper Alignments
 @mixin ag-alignments {
+  [data-grid*=dir-column] {
+    flex-direction: column;
+  }
+
   [data-grid*=align-center] {
     align-items: center;
   }
