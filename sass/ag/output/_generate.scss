@@ -16,19 +16,24 @@
   }
 
   [data-grid~=row] {
-    flex: 1 0 100%;
-    margin: 0 ( ag-conf(gutters) * -0.5 );
+    flex: 1 1 100%;
+    margin: 0 ( ag-conf(gutters) * -0.5);
   }
 
   [data-grid*=nowrap] {
     flex-wrap: nowrap;
   }
+
 }
 
 // Generate Grid Wrapper Alignments
 @mixin ag-alignments {
   [data-grid*=dir-column] {
     flex-direction: column;
+  }
+
+  [data-grid*=dir-row] {
+    flex-direction: row;
   }
 
   [data-grid*=align-center] {
@@ -65,13 +70,14 @@
 }
 
 // Generate Cell Defaults
-@mixin ag-cells {
+@mixin ag-cell($padding: ag-conf(gutters)) {
   [data-cell] {
-    flex-grow: 0;
-    padding-left: (ag-conf(gutters) * 0.5);
-    padding-right: (ag-conf(gutters) * 0.5);
+    padding-left: ($padding * 0.5);
+    padding-right: ($padding * 0.5);
   }
+}
 
+@mixin ag-cell-attributes {
   [data-cell*="nest"] {
     padding-left: 0;
     padding-right: 0;
@@ -83,54 +89,50 @@
 }
 
 // Generate Cell Sizes
-@mixin ag-sizes($columns: ag-conf(columns), $full: true) {
-  $length: if( $full, $columns, $columns - 1 );
-  @for $i from 1 through $length {
-    $fraction: ag-fraction($i, $columns);
-    $percent: percentage($i/$columns);
+@mixin ag-cell-sizes($columns: ag-conf(columns), $full: true, $responsive: ag-conf(responsive)) {
+  $length: if( $full, $columns, $columns - 1);
 
-    [data-cell~="#{$fraction}"] {
-      flex-basis: $percent;
-    }
-
-    @if ( ag-conf(ie-support) == true ) {
-      @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-        [data-cell~="#{$fraction}"] {
-          max-width: $percent;
-        }
+  // Loop through breakpoints
+  @each $size in map-keys($responsive) {
+    @if ( ag-deep-has-key($responsive, $size, gutters) ) {
+      @include ag-bp($size, $columns, $responsive) {
+        @include ag-cell( ag-deep-get($responsive, $size, gutters) )
       }
     }
+    @for $i from 1 through $length {
+      $fraction: ag-fraction($i, $columns);
+      $percent: percentage($i/$columns);
+      $selector: if($size == '*', $fraction, "#{$fraction}@#{$size}");
 
-    @each $size in map-keys(ag-conf(breakpoints)) {
-      @include ag-bp($size, $i) {
-        [data-cell~="#{$fraction}@#{$size}"] {
-          flex-basis: $percent;
-        }
-
-        @if ( ag-conf(ie-support) == true ) {
-          @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-            [data-cell~="#{$fraction}@#{$size}"] {
-              max-width: $percent;
-            }
-          }
-        }
+      @include ag-bp($size, $i, $responsive) {
+        @include ag-cell-size($selector, $percent);
       }
     }
   }
 }
 
+@mixin ag-cell-size($selector, $percent) {
+  [data-cell~="#{$selector}"] {
+    flex-basis: $percent;
+  }
+
+  @if ( ag-conf(ie-support) == true) {
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+      [data-cell~="#{$selector}"] {
+        max-width: $percent;
+      }
+    }
+  }
+}
+
+
 // Generate Grid Selectors
 @mixin ag-grid($grid: ag-conf()) {
   @include ag-wrappers;
-
   @if ( ag-conf(include-alignment) ) {
     @include ag-alignments;
   }
-
-  @include ag-cells;
-  @include ag-sizes;
-
-  @if ( ag-conf(include-fiths) ) {
-    @include ag-sizes(5, false);
-  }
+  @include ag-cell;
+  @include ag-cell-attributes;
+  @include ag-cell-sizes;
 }

@@ -5,21 +5,32 @@ $ag-version: 1.0;
 $ag-defaults: (
   max-width: 1680px,
   columns: 12,
-  gutters: 3em,
-  include-fiths: true,
+  gutters: 1em,
+  // include-fiths: true,
   include-alignment: true,
   reduce-fractions: true,
   responsive: (
-    mobile: (4, 6, 8, 12),
-    tablet: (3, 4, 6, 8, 9, 12),
-    touch: (3, 4, 6, 8, 9, 12),
+    '*': (
+      breakpoint: null,
+      columns: (3, 4, 6, 8, 9, 12)
+    ),
+    tablet: (
+      breakpoint: 768px,
+      columns: (3, 4, 5, 6, 7, 8, 9, 12),
+      gutters: 2em
+    ),
+    desktop: (
+      breakpoint: 1140px,
+      columns: '*',
+      gutters: 2em
+    ),
+    desktopHD: (
+      breakpoint: 1440px,
+      columns: '*',
+      gutters: 4em
+    )
   ),
-  breakpoints: (
-    mobile: max-width 640px,
-    tablet: 640px 1280px,
-    touch: max-width 1280px,
-  ),
-  ie-support: true
+  ie-support: false
 );
 
 // User Settings

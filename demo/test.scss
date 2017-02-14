@@ -1,3 +1,25 @@
+@import '../bp/breakpoint';
 @import '../sass/ag';
 
-@include ag-grid;
+@include ag-grid();
+
+$five-col-responsive-config: (
+  '*': (
+    breakpoint: null,
+    columns: '*'
+  ),
+  tablet: (
+    breakpoint: 768px,
+    columns: '*'
+  ),
+  desktop: (
+    breakpoint: 1140px,
+    columns: '*'
+  ),
+  desktopHD: (
+    breakpoint: 1440px,
+    columns: '*'
+  )
+);
+
+@include ag-cell-sizes(5, false, $five-col-responsive-config);
