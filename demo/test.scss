@@ -9,15 +9,15 @@ $five-col-responsive-config: (
     columns: '*'
   ),
   tablet: (
-    breakpoint: 768px,
+    breakpoint: 48em,
     columns: '*'
   ),
   desktop: (
-    breakpoint: 1140px,
+    breakpoint: 72em,
     columns: '*'
   ),
   desktopHD: (
-    breakpoint: 1440px,
+    breakpoint: 90em,
     columns: '*'
   )
 );
