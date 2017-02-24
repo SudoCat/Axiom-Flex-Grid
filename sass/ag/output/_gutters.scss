@@ -1,0 +1,30 @@
+// Generate Responsive Gutters
+@mixin ag-gutters($responsive: ag-conf(responsive)) {
+  @include ag-gutter(ag-conf(gutters));
+
+  // Loop through breakpoints
+  @each $size in map-keys($responsive) {
+    @include ag-bp($size, $responsive) {
+      @if ( ag-deep-has-key($responsive, $size, gutters) ) {
+        @include ag-gutter( ag-deep-get($responsive, $size, gutters) );
+      }
+    }
+  }
+}
+
+// Generate Gutters
+@mixin ag-gutter($gutters: ag-conf(gutters)) {
+  [data-grid~=wrap] {
+    padding-left: $gutters;
+    padding-right: $gutters;
+  }
+
+  [data-grid~=row] {
+    margin: 0 ( $gutters * -0.5);
+  }
+
+  [data-cell] {
+    padding-left: ($gutters * 0.5);
+    padding-right: ($gutters * 0.5);
+  }
+}

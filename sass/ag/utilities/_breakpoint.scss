@@ -2,29 +2,36 @@
   @warn "To enable responsive grid sizes, please include the Breakpoints SASS plugin. https://github.com/at-import/breakpoint";
 }
 
-@mixin ag-bp($size, $column: false, $responsive: ag-conf(responsive)) {
+@mixin ag-bp($size, $responsive: ag-conf(responsive)) {
   // Check for BP mixin
   @if ( mixin-exists(breakpoint) ) {
+
     // Check size exists in responsive
     @if ( ag-deep-has-key($responsive, $size) ) {
 
-      // Get columns and breakpoint for current size
-      $columns: ag-deep-get($responsive, $size, columns);
+      // Get Breakpoint Value
       $bp: ag-deep-get($responsive, $size, breakpoint);
 
-      // Check if column exists in sizes
-      @if ( $columns == '*' or index($columns, $column) ) {
-        @if ( $size == '*' or not $bp ) {
-          @content;
-        } @else {
-          @include breakpoint($bp) {
-            @content;
-          }
-        }
+      @if ( $size == '*' or not $bp ) {
+        @content;
       } @else {
-        @debug "Column '#{$column}' is not enabled for breakpoint '#{$size}'";
+        @include breakpoint($bp) {
+          @content;
+        }
       }
+    } @else {
+      @debug "Size '#{$size}' was not found in responsive settings.";
+    }
+  }
+}
 
+@mixin ag-bp-cell($column: false, $size: '*', $responsive: ag-conf(responsive)) {
+  @include ag-bp($size, $responsive) {
+    $columns: ag-deep-get($responsive, $size, columns);
+    @if ( $columns == '*' or index($columns, $column) ) {
+      @content;
+    } @else {
+      @debug "Column '#{$column}' is not enabled for breakpoint '#{$size}'";
     }
   }
 }

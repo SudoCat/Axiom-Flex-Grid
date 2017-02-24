@@ -1,138 +1,14 @@
-// Generate Wrappers
-@mixin ag-wrappers {
-  [data-grid] {
-    display: flex;
-    flex-wrap: wrap;
-    flex-grow: 1;
-  }
-
-  [data-grid~=wrap] {
-    width: 100%;
-    max-width: ag-conf(max-width);
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: ag-conf(gutters);
-    padding-right: ag-conf(gutters);
-  }
-
-  [data-grid~=row] {
-    flex: 1 1 100%;
-    margin: 0 ( ag-conf(gutters) * -0.5);
-  }
-
-  [data-grid*=nowrap] {
-    flex-wrap: nowrap;
-  }
-
-}
-
-// Generate Grid Wrapper Alignments
-@mixin ag-alignments {
-  [data-grid*=dir-column] {
-    flex-direction: column;
-  }
-
-  [data-grid*=dir-row] {
-    flex-direction: row;
-  }
-
-  [data-grid*=align-center] {
-    align-items: center;
-  }
-
-  [data-grid*=align-start] {
-    align-items: flex-start;
-  }
-
-  [data-grid*=align-end] {
-    align-items: flex-end;
-  }
-
-  [data-grid*=justify-center] {
-    justify-content: center;
-  }
-
-  [data-grid*=justify-start] {
-    justify-content: flex-start;
-  }
-
-  [data-grid*=justify-end] {
-    justify-content: flex-end;
-  }
-
-  [data-grid*=justify-between] {
-    justify-content: space-between;
-  }
-
-  [data-grid*=justify-around] {
-    justify-content: space-around;
-  }
-}
-
-// Generate Cell Defaults
-@mixin ag-cell($padding: ag-conf(gutters)) {
-  [data-cell] {
-    padding-left: ($padding * 0.5);
-    padding-right: ($padding * 0.5);
-  }
-}
-
-@mixin ag-cell-attributes {
-  [data-cell*="nest"] {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  [data-cell*="grow"] {
-    flex-grow: 1;
-  }
-}
-
-// Generate Cell Sizes
-@mixin ag-cell-sizes($columns: ag-conf(columns), $full: true, $responsive: ag-conf(responsive)) {
-  $length: if( $full, $columns, $columns - 1);
-
-  // Loop through breakpoints
-  @each $size in map-keys($responsive) {
-    @if ( ag-deep-has-key($responsive, $size, gutters) ) {
-      @include ag-bp($size, $columns, $responsive) {
-        @include ag-cell( ag-deep-get($responsive, $size, gutters) )
-      }
-    }
-    @for $i from 1 through $length {
-      $fraction: ag-fraction($i, $columns);
-      $percent: percentage($i/$columns);
-      $selector: if($size == '*', $fraction, "#{$fraction}@#{$size}");
-
-      @include ag-bp($size, $i, $responsive) {
-        @include ag-cell-size($selector, $percent);
-      }
-    }
-  }
-}
-
-@mixin ag-cell-size($selector, $percent) {
-  [data-cell~="#{$selector}"] {
-    flex-basis: $percent;
-  }
-
-  @if ( ag-conf(ie-support) == true) {
-    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-      [data-cell~="#{$selector}"] {
-        max-width: $percent;
-      }
-    }
-  }
-}
-
+@import "wrappers";
+@import "cells";
+@import "gutters";
 
 // Generate Grid Selectors
 @mixin ag-grid($grid: ag-conf()) {
   @include ag-wrappers;
   @if ( ag-conf(include-alignment) ) {
-    @include ag-alignments;
+    @include ag-wrapper-attributes;
   }
-  @include ag-cell;
-  @include ag-cell-attributes;
+  @include ag-gutters;
   @include ag-cell-sizes;
+  @include ag-cell-attributes;
 }
