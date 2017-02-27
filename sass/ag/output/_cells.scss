@@ -5,7 +5,7 @@
   // Loop through breakpoints
   @each $size in map-keys($responsive) {
     @if ( $full ) {
-      @include ag-cell-auto($size);  
+      @include ag-cell-auto($size, $responsive);
     }
 
     @for $column from 1 through $length {
@@ -20,10 +20,12 @@
   }
 }
 
-@mixin ag-cell-auto($size) {
+@mixin ag-cell-auto($size, $responsive: ag-conf(responsive)) {
   $selector: if($size == '*', 'auto', 'auto@#{$size}');
-  [data-cell~="#{$selector}"] {
-    flex-basis: auto;
+  @include ag-bp($size, $responsive) {
+    [data-cell~="#{$selector}"] {
+      flex-basis: auto;
+    }
   }
 }
 
