@@ -5,7 +5,7 @@
   // Loop through breakpoints
   @each $size in map-keys($responsive) {
     @if ( $full ) {
-      @include ag-cell-auto;  
+      @include ag-cell-auto($size);  
     }
 
     @for $column from 1 through $length {
