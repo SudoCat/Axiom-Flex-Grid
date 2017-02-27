@@ -4,6 +4,10 @@
 
   // Loop through breakpoints
   @each $size in map-keys($responsive) {
+    @if ( $full ) {
+      @include ag-cell-auto;  
+    }
+
     @for $column from 1 through $length {
       $fraction: ag-fraction($column, $columns);
       $percent: percentage($column/$columns);
@@ -13,6 +17,13 @@
         @include ag-cell-size($selector, $percent);
       }
     }
+  }
+}
+
+@mixin ag-cell-auto($size) {
+  $selector: if($size == '*', 'auto', 'auto@#{$size}');
+  [data-cell~="#{$selector}"] {
+    flex-basis: auto;
   }
 }
 
