@@ -1,6 +1,6 @@
 // Get Fraction
 @function ag-fraction($numerator, $denominator, $reduce: ag-conf(reduce-fractions), $escape: true) {
-  @if ( $numerator == $denominator ) {
+  @if $numerator == $denominator {
     @return 'full';
   }
   $return: if( $reduce, ag-reduce($numerator, $denominator), $numerator + '/' + $denominator );

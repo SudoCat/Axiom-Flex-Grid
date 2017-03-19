@@ -5,7 +5,7 @@
   // Loop through breakpoints
   @each $size in map-keys($responsive) {
     @include ag-bp($size, $responsive) {
-      @if ( ag-deep-has-key($responsive, $size, gutters) ) {
+      @if ag-deep-has-key($responsive, $size, gutters) {
         @include ag-gutter( ag-deep-get($responsive, $size, gutters) );
       }
     }

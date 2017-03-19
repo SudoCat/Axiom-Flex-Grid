@@ -1,4 +1,4 @@
-@import '../bp/breakpoint';
+@import 'breakpoint-sass/stylesheets/breakpoint';
 @import '../sass/ag';
 
 @include ag-grid();

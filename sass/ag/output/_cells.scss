@@ -4,7 +4,7 @@
 
   // Loop through breakpoints
   @each $size in map-keys($responsive) {
-    @if ( $full ) {
+    @if $full {
       @include ag-cell-auto($size, $responsive);
     }
 
@@ -35,7 +35,7 @@
     flex-basis: $percent;
   }
 
-  @if ( ag-conf(ie-support) == true) {
+  @if ag-conf(ie-support) == true {
     @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
       [data-cell~="#{$selector}"] {
         max-width: $percent;

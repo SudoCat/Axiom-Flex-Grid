@@ -5,7 +5,7 @@
 // Generate Grid Selectors
 @mixin ag-grid($grid: ag-conf()) {
   @include ag-wrappers;
-  @if ( ag-conf(include-alignment) ) {
+  @if ag-conf(include-alignment) {
     @include ag-wrapper-attributes;
   }
   @include ag-gutters;

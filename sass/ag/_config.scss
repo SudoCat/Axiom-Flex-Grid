@@ -1,6 +1,9 @@
 // Version
 $ag-version: 1.0;
 
+// Debug
+$ag-debug: false;
+
 // default Settings
 $ag-defaults: (
   max-width: 1680px,
@@ -38,8 +41,8 @@ $ag: () !default;
 // Get config
 @function ag-conf($keys...) {
   $config: if(length($ag) > 0, ag-deep-merge($ag-defaults, $ag), $ag-defaults);
-  @if ( length($keys) > 0 ) {
-    @if ( ag-deep-has-key($config, $keys...) ) {
+  @if length($keys) > 0 {
+    @if ag-deep-has-key($config, $keys...) {
       @return ag-deep-get($config, $keys...);
     } @else {
       @warn "#{$keys...} does not exists";
