@@ -20,7 +20,8 @@
   }
 
   [data-grid~=row] {
-    margin: 0 ( $gutters * -0.5);
+    margin-right: ( $gutters * -0.5);
+    margin-left: ( $gutters * -0.5);
   }
 
   [data-cell] {
